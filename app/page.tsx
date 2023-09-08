@@ -77,8 +77,8 @@ export default function Home() {
             </div>
           </section>
           {/* Work */}
-          <section id="work" key="work">
-            <h2 className="text-2xl font-semibold tracking-tight">Work</h2>
+          <section id="blog" key="work">
+            <h2 className="text-2xl font-semibold tracking-tight">Blog</h2>
             <div className="mt-5 rounded-xl border bg-card text-card-foreground shadow">
               <div className="p-6 space-y-6">
                 {workExperiences.map(

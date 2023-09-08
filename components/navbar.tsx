@@ -1,5 +1,4 @@
 "use client";
-
 import { Button } from "./ui/button";
 import Logo from "./logo";
 import { ModeToggle } from "./mode-toggle";
@@ -37,13 +36,13 @@ export default function Navbar() {
           <span className="hidden md:block ml-2">Projects</span>
         </Button>
         <Button
-          onClick={() => navigateTo("/#work")}
+          onClick={() => navigateTo("/#blog")}
           variant="outline"
           size="sm"
           className="ml-auto h-8"
         >
           <Briefcase className=" h-4 w-4" />
-          <span className="hidden md:block ml-2">Work</span>
+          <span className="hidden md:block ml-2">Blog</span>
         </Button>
         <Button
           onClick={() => navigateTo("/#contact")}
