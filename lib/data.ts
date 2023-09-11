@@ -200,9 +200,9 @@ export const projects: Project[] = [
     link: "https://github.com/frantchessico/stripe-payment-with-go",
   },
   {
-    title: "Project 6",
-    description: "Give a short description about project 6",
-    link: "https://github.com/",
+    title: "Stripe Payment API with FastAPI",
+    description: "This is an example of a FastAPI-based API in Python that allows you to create a payment intent with Stripe and process payments. The API is configured to accept POST requests and respond with details about the created payment intent or payment processing status.",
+    link: "https://github.com/frantchessico/stripe-payment-with-python",
   },
 ];
 
