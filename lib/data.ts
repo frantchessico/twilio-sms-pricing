@@ -200,9 +200,21 @@ export const projects: Project[] = [
     link: "https://github.com/frantchessico/stripe-payment-with-go",
   },
   {
-    title: "Stripe Payment API with FastAPI",
+    title: "Stripe Payment API with Python",
     description: "This is an example of a FastAPI-based API in Python that allows you to create a payment intent with Stripe and process payments. The API is configured to accept POST requests and respond with details about the created payment intent or payment processing status.",
     link: "https://github.com/frantchessico/stripe-payment-with-python",
+  },
+
+  {
+    title: "PayPal Payment API with Python",
+    description: "This is an example of a FastAPI-based API in Python that allows you to create and execute PayPal payments. The API is configured to accept POST requests and interact with the PayPal API for payment processing.",
+    link: "https://github.com/frantchessico/paypal-payment-with-python",
+  },
+
+  {
+    title: "PayPal Payment API with Go",
+    description: "This is an example of a Go-based API that allows you to create and execute PayPal payments. The API interacts with the PayPal API for payment processing.",
+    link: "https://github.com/frantchessico/paypal-payment-with-go",
   },
 ];
 
