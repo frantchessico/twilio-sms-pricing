@@ -195,9 +195,9 @@ export const projects: Project[] = [
     link: "https://github.com/frantchessico/nodejs-auth-api",
   },
   {
-    title: "Project 5",
-    description: "Give a short description about project 5",
-    link: "https://github.com/",
+    title: "Stripe Payment API in Go",
+    description: "This is an example of a Go API that allows you to create a payment intent with Stripe. The API is configured to accept POST requests and responds with details about the created payment intent.",
+    link: "https://github.com/frantchessico/stripe-payment-with-go",
   },
   {
     title: "Project 6",
