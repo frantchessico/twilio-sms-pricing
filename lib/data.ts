@@ -175,24 +175,24 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "Project 1",
-    description: "Give a short description about project 1",
-    link: "https://github.com/",
+    title: "Zogo",
+    description: "Zogo is a custom validation library for Go that allows you to define and apply various validation rules to your data. It is inspired by Zod's zogo.",
+    link: "https://github.com/frantchessico/zogo",
   },
   {
-    title: "Project 2",
-    description: "Give a short description about project 2",
-    link: "https://github.com/",
+    title: "Country Dialing Code API With GoLang Documentation",
+    description: "This simple Go (Golang) API provides information about countries, including their names, dialing codes, and country codes. It reads this information from a JSON file and exposes an endpoint to retrieve these data.",
+    link: "https://github.com/frantchessico/countries-with-dials-go",
   },
   {
-    title: "Project 3",
-    description: "Give a short description about project 3",
-    link: "https://github.com/",
+    title: "Country Dialing Code API With Python Documentation",
+    description: "This FastAPI project provides information about countries, including their names, dialing codes, and country codes. It reads this information from a JSON file and exposes an endpoint to retrieve these data.",
+    link: "https://github.com/frantchessico/countries-with-dialing-code-python",
   },
   {
-    title: "Project 4",
-    description: "Give a short description about project 4",
-    link: "https://github.com/",
+    title: "Nodejs Auth API Documentation",
+    description: "Welcome to the official documentation of Nodejs Auth API. This API provides a comprehensive set of functionalities for user management, authentication, email verification, and password reset.",
+    link: "https://github.com/frantchessico/nodejs-auth-api",
   },
   {
     title: "Project 5",
