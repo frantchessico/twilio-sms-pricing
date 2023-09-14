@@ -4,6 +4,8 @@ import Logo from "./logo";
 import { ModeToggle } from "./mode-toggle";
 import { Home, Briefcase, Mail, Presentation } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { BiRocket } from "react-icons/bi";
 
 export default function Navbar() {
   const router = useRouter();
@@ -53,6 +55,17 @@ export default function Navbar() {
           <Mail className=" h-4 w-4" />
           <span className="hidden md:block ml-2">Contact</span>
         </Button>
+
+        <Link href={"/challenge-me"}>
+       <Button
+          variant="outline"
+          size="sm"
+          className="ml-auto h-8"
+        >
+          <BiRocket className=" h-4 w-4" />
+          <span className="hidden md:block ml-2">Challenge-me</span>
+        </Button>
+       </Link>
         <ModeToggle />
       </div>
     </div>

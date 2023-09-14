@@ -1,23 +1,29 @@
+import { useState, useEffect } from "react";
 import ActionButton from "@/components/action-button";
+// import BlogPosts from "@/components/blog-posts";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import ProjectShowcase from "@/components/project-showcase";
 import Sidebar from "@/components/sidebar";
 import SkillOutline from "@/components/skill-outline";
 import { Separator } from "@/components/ui/separator";
-import WorkShowcase from "@/components/work-showcase";
+
 
 import {
   Project,
-  WorkExperience,
   aboutYou,
   marketingHeadlines,
   projects,
   skills,
-  workExperiences,
+  getPosts
 } from "@/lib/data";
+import { IBlogPosts  } from "@/lib/data";
+import BlogPosts from "@/components/blog-posts";
 
-export default function Home() {
+export default async function Home() {
+  
+   const blogs: IBlogPosts[] = await getPosts()
+  
   return (
     <div className="md:max-w-3xl mx-auto md:mt-8 ">
       <Navbar />
@@ -81,15 +87,10 @@ export default function Home() {
             <h2 className="text-2xl font-semibold tracking-tight">Blog</h2>
             <div className="mt-5 rounded-xl border bg-card text-card-foreground shadow">
               <div className="p-6 space-y-6">
-                {workExperiences.map(
-                  (experience: WorkExperience, index: number) => (
-                    <WorkShowcase
-                      key={experience.company}
-                      experience={experience}
-                      whetherlast={workExperiences.length == index + 1}
-                    />
-                  )
-                )}
+               
+                    {blogs.map(blog => <BlogPosts blog={blog}/>)}
+                    
+                  
               </div>
             </div>
           </section>

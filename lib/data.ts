@@ -30,7 +30,9 @@ import {
   SiAppwrite,
   SiAngular
 } from "react-icons/si";
+import axios from 'axios'
 import { BiLogoPostgresql } from "react-icons/bi";
+
 
 export const skills = [
   {
@@ -173,12 +175,47 @@ export interface Project {
   link: string;
 }
 
+
+export interface IBlogPosts {
+  title: string;
+  url: string;
+  description: string;
+  public_reactions_count: number,
+  user: {
+    name: string,
+    username: string
+    profile_image: string
+  };
+}
+
+  export let allBlogs: IBlogPosts[] = []
+
+
+
+  export const getPosts = async() => {
+    try {
+      const { data } = await axios.get('https://dev.to/api/articles?username=frantchessico')
+      return data
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  
+
+
 export const projects: Project[] = [
   {
     title: "Zogo",
     description: "Zogo is a custom validation library for Go that allows you to define and apply various validation rules to your data. It is inspired by Zod's zogo.",
     link: "https://github.com/frantchessico/zogo",
   },
+  {
+    title: "Go Contact API & Send Email",
+    description: "This API is designed to handle contact form submissions, store contact information in a MongoDB database, and send a confirmation email. It provides endpoints to submit contact information and receive confirmation messages.",
+    link: "https://github.com/frantchessico/franciscoinoque.tech-server-go",
+  },
+
   {
     title: "Country Dialing Code API With GoLang Documentation",
     description: "This simple Go (Golang) API provides information about countries, including their names, dialing codes, and country codes. It reads this information from a JSON file and exposes an endpoint to retrieve these data.",
@@ -218,45 +255,10 @@ export const projects: Project[] = [
   },
 ];
 
-export interface WorkExperience {
-  company: string;
-  logo: string;
-  position: string;
-  description: string;
-  years: string;
-}
 
-export const workExperiences: WorkExperience[] = [
-  {
-    company: "Company 3",
-    logo: "/company-logo.png",
-    position: "Company 3 Position",
-    description: "Write briefly on your experience working at Company 3.",
-    years: "Apr, 2022 - Aug, 2023",
-  },
-  {
-    company: "Company 2",
-    logo: "/company-logo.png",
-    position: "Company 2 Position",
-    description: "Write briefly on your experience working at Company 2.",
-    years: "Jan, 2020 - Mar, 2022",
-  },
-  {
-    company: "Company 1",
-    logo: "/company-logo.png",
-    position: "Company 1 Position",
-    description: "Write briefly on your experience working at Company 1.",
-    years: "Aug, 2018 - Sep, 2018",
-  },
-  {
-    company: "Uni Name",
-    logo: "/company-logo.png",
-    position: "Student",
-    description:
-      "Write briefly about your university experience (degree, subject, etc.)",
-    years: "Aug, 2015 - Jun, 2019",
-  },
-];
+
+
+
 
 export const aboutYou = {
   name: "Francisco Inoque",
@@ -278,3 +280,27 @@ export const websiteMetadata = {
   title: "Francisco Inoque | Backend Developer",
   description: "👋 Hey, Random Person here. Welcome to my portflio/blog.",
 };
+
+
+export const stacktechs = [
+  { key: 'golang', name: 'Golang' },
+  { key: 'node', name: 'Node' },
+  { key: 'python', name: 'Python' },
+  { key: 'fastapi', name: 'FastAPI' },
+  { key: 'express', name: 'Express' },
+  { key: 'fastify', name: 'Fastify' },
+  { key: 'prisma', name: 'Prisma' },
+  { key: 'supabase', name: 'Supabase' },
+  { key: 'appwrite', name: 'Appwrite' },
+  { key: 'firebase', name: 'Firebase' },
+  { key: 'faunadb', name: 'FaunaDB' },
+  { key: 'postgresql', name: 'PostgreSQL' },
+  { key: 'mongodb', name: 'MongoDB' },
+  { key: 'redis', name: 'Redis' },
+  { key: 'docker', name: 'Docker' },
+  { key: 'aws', name: 'AWS' },
+  { key: 'kubernetes', name: 'Kubernetes' },
+  { key: 'heroku', name: 'Heroku' },
+  { key: 'git', name: 'Git' }
+];
+
