@@ -88,7 +88,7 @@ export default async function Home() {
             <div className="mt-5 rounded-xl border bg-card text-card-foreground shadow">
               <div className="p-6 space-y-6">
                
-                    {blogs.map(blog => <BlogPosts blog={blog}/>)}
+                    {blogs.map(blog => <BlogPosts blog={blog} key={blog.url}/>)}
                     
                   
               </div>
