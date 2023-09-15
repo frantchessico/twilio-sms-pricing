@@ -302,4 +302,3 @@ export const stacktechs = [
   { key: 'heroku', name: 'Heroku' },
   { key: 'git', name: 'Git' }
 ];
-
