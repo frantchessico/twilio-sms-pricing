@@ -63,7 +63,7 @@ export default async function Home() {
                   <SkillOutline
                     key={skill.text}
                     Icon={skill.icon}
-                    text={skill.text}
+                    // text={skill.text}
                   />
                 ))}
               </div>

@@ -1,10 +1,7 @@
 
 import Footer from "@/components/footer";
 import { MyForm } from "@/components/form";
-import MyInputField from "@/components/input-field";
-import MyTextArea from "@/components/my-textarea";
 import Navbar from "@/components/navbar";
-import MySelectField from "@/components/select-input-field";
 import SkillOutline from "@/components/skill-outline";
 
 
@@ -12,17 +9,13 @@ import SkillOutline from "@/components/skill-outline";
 import {
  
   skills,
-  stacktechs
 
 } from "@/lib/data";
 import { FormEvent } from "react";
-import { BiSolidEnvelope, BiSolidUser, BiSolidUserAccount } from "react-icons/bi";
-import { SiLinkedin } from "react-icons/si";
+
 
 export default function Home() {
-  function handleFormSubmit(event: FormEvent<HTMLFormElement>): void {
-    throw new Error("Function not implemented.");
-  }
+
 
   return (
     <div className="md:max-w-3xl mx-auto md:mt-8 ">
@@ -33,7 +26,7 @@ export default function Home() {
                   <SkillOutline
                     key={skill.text}
                     Icon={skill.icon}
-                    text={''}
+                    // text={''}
                   />
                 ))}
               </div>
