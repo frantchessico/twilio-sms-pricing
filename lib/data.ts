@@ -180,7 +180,6 @@ export interface IBlogPosts {
   title: string;
   url: string;
   description: string;
-  public_reactions_count: number,
   user: {
     name: string,
     username: string

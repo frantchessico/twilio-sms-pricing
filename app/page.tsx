@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+
 import ActionButton from "@/components/action-button";
-// import BlogPosts from "@/components/blog-posts";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import ProjectShowcase from "@/components/project-showcase";
@@ -30,7 +29,7 @@ export default async function Home() {
       <div className="flex flex-col md:flex-row my-10 mx-10 md:mx-0 space-x-0 md:space-x-10 space-y-10 md:space-y-0 ">
         <Sidebar />
         <div className="md:min-w-[65vh] min-w-full space-y-10">
-          {/* Hero */}
+         
           <section id="home" key="home" className="space-y-5">
             <div className="text-2xl font-bold tracking-tight">
               {marketingHeadlines.mainHeadline}
@@ -71,7 +70,7 @@ export default async function Home() {
          
             </div>
           </section>
-          {/* Projects */}
+         
           <section id="projects" key="projects">
             <h2 className="text-2xl font-semibold tracking-tight">Projects</h2>
             <div>
@@ -82,7 +81,7 @@ export default async function Home() {
               </div>
             </div>
           </section>
-          {/* Work */}
+         
           <section id="blog" key="work">
             <h2 className="text-2xl font-semibold tracking-tight">Blog</h2>
             <div className="mt-5 rounded-xl border bg-card text-card-foreground shadow">
@@ -94,7 +93,7 @@ export default async function Home() {
               </div>
             </div>
           </section>
-          {/* Contact */}
+          
           <section id="contact" key="contact">
             <h2 className="text-2xl font-semibold tracking-tight">Contact</h2>
             <div className="mt-5 rounded-xl border bg-card text-card-foreground shadow">
