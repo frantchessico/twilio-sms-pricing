@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 interface IContact {
     firstName: string;
@@ -10,15 +10,20 @@ interface IContact {
   }
   
   export default IContact;
+
   
 
-export const contactService = async(contact: IContact) => {
-    console.log(contact)
-    try {
-        const datas = await axios.post<IContact>('https://api.franciscoinoque.tech/api/contact', contact)
-        
-        return datas
-    } catch (error) {
-       return error 
-    }
+  const apiUrl = 'https://api.franciscoinoque.tech/api/contact';
+
+export  async function contactService(contact: IContact): Promise<AxiosResponse<any>> {
+  try {
+    return await axios.post(apiUrl, contact)
+  } catch (error) {
+    throw error;
+  }
 }
+
+
+  
+
+  

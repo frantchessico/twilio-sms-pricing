@@ -39,7 +39,8 @@ export default function Home() {
               </div>
         <div className="md:min-w-[65vh] min-w-full space-y-10">
 
-<label htmlFor="email-address-icon" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Email</label>
+<h1 className="text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Let's build</h1>
+<span className="text-3xl font-bold dark:text-white">Good things together!</span>
 
 <MyForm/>
 

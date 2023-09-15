@@ -83,3 +83,20 @@
     @apply underline underline-offset-4 hover:text-primary;
   }
 }
+
+
+@media (max-width: 640px) {
+  .mobile-button {
+    width: 100%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+  }
+  .hide-elements {
+    display: none !important
+  }
+}
+
+
+

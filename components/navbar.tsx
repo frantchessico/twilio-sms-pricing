@@ -50,9 +50,9 @@ export default function Navbar() {
           onClick={() => navigateTo("/#contact")}
           variant="outline"
           size="sm"
-          className="ml-auto h-8"
+          className="ml-auto h-8 hide-elements"
         >
-          <Mail className=" h-4 w-4" />
+          <Mail className=" h-4 w-4 " />
           <span className="hidden md:block ml-2">Contact</span>
         </Button>
 
