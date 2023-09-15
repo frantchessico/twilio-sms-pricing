@@ -109,7 +109,7 @@ export function MyForm() {
                         // required
                     />
 
-                    {errorMessages.includes("String must contain at least 2 character(s)") && (
+                    {errorMessages.includes("String must contain at least 3 character(s)") && (
                         <div className="text-red-500">Last name must contain at least 3 character(s)</div>
                     )}
                 </div>
