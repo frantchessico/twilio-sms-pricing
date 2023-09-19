@@ -205,6 +205,11 @@ export interface IBlogPosts {
 
 export const projects: Project[] = [
   {
+    title: "Primeiros passos com Angular e Firebase",
+    description: "Neste curso, você terá a oportunidade de explorar o emocionante mundo do desenvolvimento web usando duas ferramentas poderosas: Angular e Firebase.",
+    link: "https://chat.whatsapp.com/Ii72hpIR3HM98wezB42ZpC",
+  },
+  {
     title: "Zogo",
     description: "Zogo is a custom validation library for Go that allows you to define and apply various validation rules to your data. It is inspired by Zod's zogo.",
     link: "https://github.com/frantchessico/zogo",
