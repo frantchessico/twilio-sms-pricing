@@ -58,6 +58,7 @@ export function MyForm() {
             
             
             if (error instanceof z.ZodError) {
+                console.log(error)
                 setLoading("Let's go")
                 const messages = error.errors.map((e) => e.message);
                 return setErrorMessages(messages);
@@ -93,7 +94,7 @@ export function MyForm() {
                         onChange={handleChange}
                         // required
                     />
-                    {errorMessages.includes("String must contain at least 3 character(s)") && (
+                    {errorMessages.includes("First name must contain at least 3 character(s)") && (
                         <div className="text-red-500">First name must contain at least 3 character(s)</div>
                     )}
                 </div>
@@ -109,7 +110,7 @@ export function MyForm() {
                         // required
                     />
 
-                    {errorMessages.includes("String must contain at least 3 character(s)") && (
+                    {errorMessages.includes("Last name must contain at least 3 character(s)") && (
                         <div className="text-red-500">Last name must contain at least 3 character(s)</div>
                     )}
                 </div>
@@ -152,7 +153,7 @@ export function MyForm() {
                         // required
                     />
 
-                    {errorMessages.includes("String must contain at least 3 character(s)") && (
+                    {errorMessages.includes("Tech field must contain at least 3 character(s)'") && (
                         <div className="text-red-500">Tech field must contain at least 3 character(s)</div>
                     )}
                 </div>
@@ -169,7 +170,7 @@ export function MyForm() {
                         // required
                     />
                     {errorMessages.includes("String must contain at least 100 character(s)") && (
-                        <div className="text-red-500">String must contain at least 100 character(s)</div>
+                        <div className="text-red-500">Messa must contain at least 100 character(s)</div>
                     )}
                 </div>
 
