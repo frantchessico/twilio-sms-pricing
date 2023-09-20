@@ -2,188 +2,125 @@
 import { z } from "zod";
 import Footer from "@/components/footer";
 import MyInputField from "@/components/input-field";
-import MyTextArea from "@/components/my-textarea";
-import Navbar from "@/components/navbar";
+
+
 import MySelectField from "@/components/select-input-field";
 import { useEffect, useState } from "react";
-import { stacktechs } from "@/lib/data";
+
 import { FormEvent } from "react";
-import { BiSolidEnvelope, BiSolidUser } from "react-icons/bi";
+import { BiSearch, BiSolidEnvelope, BiSolidUser } from "react-icons/bi";
 import { SiLinkedin } from "react-icons/si";
-import { ContactSchema } from "@/lib/zod";
-import { contactService } from "@/services/contact.service";
+
+import { contactService, searchCountry } from "@/services/contact.service";
 import Success from "./messages/Success";
 import Error from "./messages/Error";
+import { allCountries } from "@/services/contact.service";
+import { CountryTable } from "./table";
+
 
 export function MyForm() {
+    const [tabControl, setTabControl] = useState(false)
     const [errorMessages, setErrorMessages] = useState<string[]>([]);
+    const [countries, setCountries] = useState<string[]>([])
+    const [tableDatas, setTableDatas] = useState([]);
     const [error, setError] = useState(false)
-    const [success, setScuccess] = useState(false)
     const [loading, setLoading] = useState("Let's go");
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        linkedin: '',
-        tech: '',
-        message: '',
+        country: '',
     });
+    const [suggestions, setSuggestions] = useState<string[]>([]);
+    const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    useEffect(() => {
+        allCountries().then(countries => {
+            setCountries(countries)
+        }).catch(error => {
+            console.log(error)
+        })
+    }, [''])
+
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setTabControl(false)
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+        setFormData({ ...formData, [name]: value });
+
+        
+        const filteredCountries = countries.filter((country) =>
+            country.toLowerCase().includes(value.toLowerCase())
+        );
+
+        setSuggestions(filteredCountries);
+        setSelectedCountry(null); 
     };
 
+    const handleCountrySelect = (country: string) => {
+        setSelectedCountry(country);
+        setFormData({ ...formData, country: country });
+        setSuggestions([]);
+    };
 
     async function handleFormSubmit(e: FormEvent): Promise<any> {
         e.preventDefault();
         setLoading('Loading...')
+        const { country } = formData;
+
         try {
-           const datas = ContactSchema.parse(formData)
-           const response = await contactService(formData)
-           if(!response) {
+            const { data }: any = await searchCountry(country);
+            setTableDatas(data)
             setLoading("Let's go")
-             return setError(true)
-           }
-
-           
-           setScuccess(true)
-           setError(false)
-            setErrorMessages([]);
-            setLoading("Let's go")
+            setTabControl(true)
         } catch (error) {
-            
-            
-            if (error instanceof z.ZodError) {
-                console.log(error)
-                setLoading("Let's go")
-                const messages = error.errors.map((e) => e.message);
-                return setErrorMessages(messages);
-            }
-            setScuccess(false)
-            setError(true)
-            setLoading("Let's go")
+            console.log(error)
         }
-        setFormData({
-            firstName: '',
-            lastName: '',
-            email: '',
-            linkedin: '',
-            tech: '',
-            message: '',
-          });
     }
-
+    console.log(tableDatas)
 
     return (
         <>
-           {success? <Success />: ''}
-           {error? <Error/>: ''}
-           
+
+            {error ? <Error /> : ''}
+
             <form onSubmit={handleFormSubmit}>
                 <div className="mb-4">
                     <MyInputField
-                        icon={<BiSolidUser className="w-4 h-4 text-gray-500 dark:text-gray-400" />}
+                        icon={<BiSearch className="w-4 h-4 text-gray-500 dark:text-gray-400" />}
                         type="text"
-                        placeholder="First name"
-                        name="firstName"
-                        value={formData.firstName}
+                        placeholder="Search by country and see the prices we offer"
+                        name="country"
+                        value={formData.country}
                         onChange={handleChange}
-                        // required
-                    />
-                    {errorMessages.includes("First name must contain at least 3 character(s)") && (
-                        <div className="text-red-500">First name must contain at least 3 character(s)</div>
-                    )}
-                </div>
-
-                <div className="mb-4">
-                    <MyInputField
-                        icon={<BiSolidUser className="w-4 h-4 text-gray-500 dark:text-gray-400" />}
-                        type="text"
-                        placeholder="Last name"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        // required
+                        btnText={loading}
                     />
 
-                    {errorMessages.includes("Last name must contain at least 3 character(s)") && (
-                        <div className="text-red-500">Last name must contain at least 3 character(s)</div>
+                    {suggestions.length > 0 && !selectedCountry && (
+                        <ul className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            {suggestions.map((suggestion, index) => (
+                                <li
+                                    key={index}
+                                    onClick={() => handleCountrySelect(suggestion)}
+                                    className="cursor-pointer px-4 py-2"
+                                >
+                                    {suggestion}
+                                </li>
+                            ))}
+                        </ul>
                     )}
-                </div>
 
-                <div className="mb-4">
-                    <MyInputField
-                        icon={<BiSolidEnvelope className="w-4 h-4 text-gray-500 dark:text-gray-400" />}
-                        type="text"
-                        placeholder="E-mail"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        // required
-                    />
-                    {errorMessages.includes("Invalid email") && (
-                        <div className="text-red-500">Invalid email</div>
+                    
+                    {errorMessages.includes("country must contain at least 3 character(s)") && (
+                        <div className="text-red-500">country must contain at least 3 character(s)</div>
                     )}
-                </div>
-
-                <div className="mb-4">
-                    <MyInputField
-                        icon={<SiLinkedin className="w-4 h-4 text-gray-500 dark:text-gray-400" />}
-                        type="text"
-                        placeholder="Your LinkedIn"
-                        name="linkedin"
-                        value={formData.linkedin}
-                        onChange={handleChange}
-                        // required
-                    />
-
-                    {errorMessages.includes("Invalid url") && (
-                        <div className="text-red-500">Invalid url</div>
+                    {errorMessages.includes("country must contain at least 3 character(s)") && (
+                        <div className="text-red-500">country must contain at least 3 character(s)</div>
                     )}
-                </div>
-
-                <div className="mb-4">
-                    <MySelectField name="tech" options={stacktechs}
-                        value={formData.message}
-                        onChange={handleChange}
-                        // required
-                    />
-
-                    {errorMessages.includes("Tech field must contain at least 3 character(s)'") && (
-                        <div className="text-red-500">Tech field must contain at least 3 character(s)</div>
-                    )}
-                </div>
-
-                <div className="mb-4">
-                    <MyTextArea
-                        label="Your message"
-                        id="message"
-                        rows={4}
-                        placeholder="Write your thoughts here..."
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        // required
-                    />
-                    {errorMessages.includes("String must contain at least 100 character(s)") && (
-                        <div className="text-red-500">Messa must contain at least 100 character(s)</div>
-                    )}
-                </div>
-
-                <div className="mb-4">
-                <button
-  type="submit"
-  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center mobile-button"
->
-  {loading}
-</button>
-
                 </div>
             </form>
+
+            {tabControl? <CountryTable data={tableDatas}  />: ''}
+            <div className="relative overflow-x-auto">
+
+            </div>
         </>
     );
 }
